@@ -8,12 +8,8 @@ import java.time.LocalDate;
 public class User {
     @Id
     @Column(name = "id")
-    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="course_seq")
-    @SequenceGenerator(
-            name="course_seq",
-            sequenceName="course_sequence",
-            allocationSize=1
-    )
+//    @GeneratedValue(strategy=GenerationType.IDENTITY)
+
     private int id;
 
     @Column(name = "name")
