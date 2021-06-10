@@ -23,6 +23,10 @@ SELECT @@auto_increment_increment;
 
 SELECT @@auto_increment_offset;
 
+GRANT ALL PRIVILEGES ON *.* TO 'b4538e4edb71a5'@'%';
+
+show grants;
+
 SET @@GLOBAL.auto_increment_increment=1;
 
 SET GLOBAL auto_increment_increment = 1;
