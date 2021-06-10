@@ -21,6 +21,7 @@ public class UsersDAO {
         this.sessionFactory = sessionFactory;
     }
 
+
     @Transactional(readOnly = true)
     public List<User> showAll() {
         Session session = sessionFactory.getCurrentSession();

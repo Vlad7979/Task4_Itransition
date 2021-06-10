@@ -15,9 +15,9 @@ truncate table users;
 
 alter table users auto_increment = 1;
 
-SET @@auto_increment_increment = 1;
+SET auto_increment_increment = 1;
 
-SET @@auto_increment_offset = 1;
+SET auto_increment_offset = 1;
 
 SELECT @@auto_increment_increment;
 

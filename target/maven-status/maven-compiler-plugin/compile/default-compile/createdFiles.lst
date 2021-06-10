@@ -4,3 +4,4 @@ com\vladbadey\task4\models\User.class
 com\vladbadey\task4\controllers\GreetingController.class
 com\vladbadey\task4\models\Login.class
 com\vladbadey\task4\config\SpringInitializer.class
+com\vladbadey\task4\models\Index.class
