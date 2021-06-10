@@ -86,7 +86,8 @@ public class SpringConfig implements WebMvcConfigurer {
         String password = dbUri.getUserInfo().split(":")[1];
         String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
 
-        DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        org.apache.tomcat.jdbc.pool.DataSource dataSource
+                = new org.apache.tomcat.jdbc.pool.DataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl(dbUrl);
         dataSource.setUsername(username);
