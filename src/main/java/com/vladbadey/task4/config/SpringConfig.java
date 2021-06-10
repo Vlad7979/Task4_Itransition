@@ -89,23 +89,6 @@ public class SpringConfig implements WebMvcConfigurer {
 
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
-        //        dataSource.setInitialSize(5);
-//        dataSource.setJmxEnabled(true);
-//        dataSource.setMaxActive(50);
-//        dataSource.setMinIdle(5);
-//        dataSource.setMaxIdle(25);
-//        dataSource.setMaxWait(10000);
-//        dataSource.setMaxAge(10 * 60000);
-//        dataSource.setTimeBetweenEvictionRunsMillis(5000);
-//        dataSource.setMinEvictableIdleTimeMillis(60000);
-        new HikariDataSource().setConnectionTestQuery("SELECT 1");
-//        dataSource.setValidationQueryTimeout(3);
-//        dataSource.setValidationInterval(15000);
-//        dataSource.setTestOnBorrow(true);
-//        dataSource.setTestWhileIdle(true);
-//        dataSource.setTestOnReturn(false);
-//        dataSource.setJdbcInterceptors("ConnectorState");
-//        dataSource.setDefaultTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl(dbUrl);
         dataSource.setUsername(username);
