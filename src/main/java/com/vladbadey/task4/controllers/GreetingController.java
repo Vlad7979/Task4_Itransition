@@ -1,7 +1,6 @@
 package com.vladbadey.task4.controllers;
 
 import com.vladbadey.task4.dao.UsersDAO;
-import com.vladbadey.task4.models.Index;
 import com.vladbadey.task4.models.Login;
 import com.vladbadey.task4.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,6 @@ public class GreetingController {
 
     private final UsersDAO usersDAO;
     private User currentUser = new User();
-    private Index index;
-
 
     @Autowired
     public GreetingController(UsersDAO usersDAO) {
@@ -27,7 +24,6 @@ public class GreetingController {
 
     @GetMapping("/showAll")
     public String index(Model model) {
-        model.addAttribute("i", index.getI());
         model.addAttribute("users", usersDAO.showAll());
         return "list";
     }

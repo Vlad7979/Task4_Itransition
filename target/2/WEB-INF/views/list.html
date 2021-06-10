@@ -73,8 +73,7 @@
                         <td>
                             <input type="checkbox" name="foo" th:value="${user.getId()}">
                         </td>
-                        [["${i.incI()}]]
-                        <td><span th:text="${i}"> Id </span></td>
+                        <td><span th:text="${user.getId()}"> Id </span></td>
                         <td><span th:text="${user.getName()}"> Name </span></td>
                         <td><span th:text="${user.getEmail()}"> Email </span></td>
                         <td><span th:text="${user.getRegDate()}"> RegDate </span></td>
