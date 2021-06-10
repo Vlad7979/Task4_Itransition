@@ -1,1 +1,1 @@
-web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --path http://localhost:8080/login --port $PORT target/*.war
+web: java $JAVA_OPTS -jar target/dependency/webapp-runner.jar --path login --port $PORT target/2.war
