@@ -24,8 +24,6 @@ import javax.sql.DataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.sql.Connection;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 @Configuration
@@ -92,8 +90,6 @@ public class SpringConfig implements WebMvcConfigurer {
 
         org.apache.tomcat.jdbc.pool.DataSource dataSource
                 = new org.apache.tomcat.jdbc.pool.DataSource();
-        new HikariDataSource().setConnectionTestQuery("SELECT 1");
-        dataSource.setValidationQuery("SELECT 1");
         dataSource.setInitialSize(5);
         dataSource.setJmxEnabled(true);
         dataSource.setMaxActive(50);
@@ -103,6 +99,7 @@ public class SpringConfig implements WebMvcConfigurer {
         dataSource.setMaxAge(10 * 60000);
         dataSource.setTimeBetweenEvictionRunsMillis(5000);
         dataSource.setMinEvictableIdleTimeMillis(60000);
+        dataSource.setValidationQuery("SELECT 1");
         dataSource.setValidationQueryTimeout(3);
         dataSource.setValidationInterval(15000);
         dataSource.setTestOnBorrow(true);
@@ -114,17 +111,6 @@ public class SpringConfig implements WebMvcConfigurer {
         dataSource.setUrl(dbUrl);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
-
-//        Map<String,String> jdbcUrlSettings = new HashMap<>();
-//        String jdbcDbUrl = System.getenv("CLEARDB_DATABASE_URL");
-//        if (null != jdbcDbUrl) {
-//            jdbcUrlSettings.put("hibernate.connection.url", System.getenv("CLEARDB_DATABASE_URL"));
-//        }
-//
-//        StandardServiceRegistryBuilder registry = (StandardServiceRegistryBuilder) new StandardServiceRegistryBuilder().
-//                configure("hibernate.properties").
-//                applySettings(jdbcUrlSettings).
-//                build();
 
         return dataSource;
     }
