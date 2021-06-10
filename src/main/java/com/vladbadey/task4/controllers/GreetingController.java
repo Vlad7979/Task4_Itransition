@@ -27,7 +27,7 @@ public class GreetingController {
 
     @GetMapping("/showAll")
     public String index(Model model) {
-        model.addAttribute("i", index);
+        model.addAttribute("i", index.getI());
         model.addAttribute("users", usersDAO.showAll());
         return "list";
     }
