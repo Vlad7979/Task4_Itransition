@@ -22,13 +22,13 @@ public class GreetingController {
         this.usersDAO = usersDAO;
     }
 
-    @GetMapping()
+    @GetMapping("/showAll")
     public String index(Model model) {
         model.addAttribute("users", usersDAO.showAll());
         return "list";
     }
 
-    @GetMapping("/login")
+    @GetMapping()
     public String login(@ModelAttribute("user") Login login) {
         return "login";
     }
@@ -39,9 +39,9 @@ public class GreetingController {
         if (user != null && user.getStatus()) {
             user.setLastLogIn(LocalDate.now());
             currentUser = user;
-            return "redirect:/";
+            return "redirect:/showAll";
         } else {
-            return "redirect:/login?error";
+            return "redirect:/?error";
         }
     }
 
@@ -55,7 +55,7 @@ public class GreetingController {
         if (usersDAO.isUnique(user)) {
             usersDAO.save(user);
             currentUser = user;
-            return "redirect:/";
+            return "redirect:/showAll";
         } else {
             return "redirect:/signin?uniqueError";
         }
@@ -69,10 +69,10 @@ public class GreetingController {
             User users = new User(userId);
             usersDAO.blockUser(users);
             if (users.getId() == currentUser.getId()) {
-                return "redirect:/login";
+                return "redirect:/";
             }
         }
-        return "redirect:/";
+        return "redirect:/showAll";
     }
 
     @PostMapping(value = "/action", params = "unblock")
@@ -83,7 +83,7 @@ public class GreetingController {
             User users = new User(userId);
             usersDAO.unblockUser(users);
         }
-        return "redirect:/";
+        return "redirect:/showAll";
     }
 
     @PostMapping(value = "/action", params = "delete")
@@ -94,9 +94,9 @@ public class GreetingController {
             User users = new User(userId);
             usersDAO.deleteUser(users);
             if (users.getId() == currentUser.getId()) {
-                return "redirect:/login";
+                return "redirect:/";
             }
         }
-        return "redirect:/";
+        return "redirect:/showAll";
     }
 }

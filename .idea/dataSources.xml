@@ -7,14 +7,11 @@
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/users</jdbc-url>
     </data-source>
-    <data-source source="LOCAL" name="heroku_f787c2d7ddafcdd@eu-cdbr-west-01.cleardb.com" uuid="dde2ffb9-c31e-41e3-a671-69997792d399">
+    <data-source source="LOCAL" name="heroku_f787c2d7ddafcdd@eu-cdbr-west-01.cleardb.com" uuid="717d064b-52e1-4981-9195-c97d38801395">
       <driver-ref>mysql</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://eu-cdbr-west-01.cleardb.com:3306/heroku_f787c2d7ddafcdd?reconnect=true</jdbc-url>
-      <driver-properties>
-        <property name="useSSL" value="true" />
-      </driver-properties>
     </data-source>
   </component>
 </project>
