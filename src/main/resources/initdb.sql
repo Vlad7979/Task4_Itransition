@@ -7,4 +7,8 @@ CREATE TABLE `users` (
     `status` BOOLEAN NOT NULL,
     `password` varchar(255) NOT NULL,
     PRIMARY KEY (`id`)
-)
+);
+
+alter table users modify id bigint(20) not null auto_increment;
+
+truncate table users;
