@@ -82,11 +82,12 @@ public class SpringConfig implements WebMvcConfigurer {
     public DataSource dataSource() throws URISyntaxException {
         URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
 
-        String username = "b4538e4edb71a5";
-        String password = "200b8ae1";
-        String dbUrl = "jdbc:mysql://" + "eu-cdbr-west-01.cleardb.com" + dbUri.getPath();
+        String username = dbUri.getUserInfo().split(":")[0];
+        String password = dbUri.getUserInfo().split(":")[1];
+        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl(dbUrl);
         dataSource.setUsername(username);
         dataSource.setPassword(password);
