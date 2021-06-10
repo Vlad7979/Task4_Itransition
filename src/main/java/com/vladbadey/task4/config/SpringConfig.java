@@ -1,5 +1,6 @@
 package com.vladbadey.task4.config;
 
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +22,8 @@ import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import javax.sql.DataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 @Configuration
@@ -92,6 +95,17 @@ public class SpringConfig implements WebMvcConfigurer {
         dataSource.setUsername(username);
         dataSource.setPassword(password);
 
+        Map<String,String> jdbcUrlSettings = new HashMap<>();
+        String jdbcDbUrl = System.getenv("CLEARDB_DATABASE_URL");
+        if (null != jdbcDbUrl) {
+            jdbcUrlSettings.put("hibernate.connection.url", System.getenv("CLEARDB_DATABASE_URL"));
+        }
+
+        StandardServiceRegistryBuilder registry = (StandardServiceRegistryBuilder) new StandardServiceRegistryBuilder().
+                configure("hibernate.properties").
+                applySettings(jdbcUrlSettings).
+                build();
+
         return dataSource;
     }
 
@@ -120,3 +134,4 @@ public class SpringConfig implements WebMvcConfigurer {
         return transactionManager;
     }
 }
+
