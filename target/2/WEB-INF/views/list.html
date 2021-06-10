@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <title>LIST</title>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" th:href="@{/login}">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    </div>
+</nav>
+
+<br>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <form th:method="POST" th:action="@{action}">
+                <button type="submit" class="btn" th:value="block" th:name="block">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="bi bi-lock"
+                         viewBox="0 0 20 20">
+                        <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                    </svg>
+                </button>
+                <button type="submit" class="btn" th:value="unblock" th:name="unblock">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="bi bi-unlock"
+                         viewBox="0 0 20 20">
+                        <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
+                    </svg>
+                </button>
+                <button type="submit" class="btn" th:value="delete" th:name="delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="bi bi-trash"
+                         viewBox="0 0 20 20">
+                        <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                        <path fill-rule="evenodd"
+                              d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                    </svg>
+                </button>
+                <table class="table table-sm">
+                    <thead>
+                    <script language="JavaScript">
+                        function toggle(source) {
+                            checkboxes = document.getElementsByName('foo');
+                            for (var i = 0, n = checkboxes.length; i < n; i++) {
+                                checkboxes[i].checked = source.checked;
+                            }
+                        }
+                    </script>
+                    <tr>
+                        <th scope="col"><input type="checkbox" onClick="toggle(this)"></th>
+                        <th scope="col"> Id</th>
+                        <th scope="col"> Name</th>
+                        <th scope="col"> Email</th>
+                        <th scope="col"> RegDate</th>
+                        <th scope="col"> LastLogIn</th>
+                        <th scope="col"> Status</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:if="${users.isEmpty()}">
+                        <td colspan="2"> No Books Available</td>
+                    </tr>
+                    <tr th:each="user : ${users}">
+                        <td>
+                            <input type="checkbox" name="foo" th:value="${user.getId()}">
+                        </td>
+                        <td><span th:text="${user.getId()}"> Id </span></td>
+                        <td><span th:text="${user.getName()}"> Name </span></td>
+                        <td><span th:text="${user.getEmail()}"> Email </span></td>
+                        <td><span th:text="${user.getRegDate()}"> RegDate </span></td>
+                        <td><span th:text="${user.getLastLogIn()}"> LastLogIn </span></td>
+                        <td>
+                            <span th:if="${user.getStatus()}" th:align="center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="bi bi-unlock"
+                                 viewBox="0 0 20 20">
+                                <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2zM3 8a1 1 0 0 0-1 1v5a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V9a1 1 0 0 0-1-1H3z"/>
+                            </svg>
+                            </span>
+                            <span th:unless="${user.getStatus()}">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" class="bi bi-lock"
+                                     viewBox="0 0 20 20">
+                                    <path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2zM5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1z"/>
+                                </svg>
+                            </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
