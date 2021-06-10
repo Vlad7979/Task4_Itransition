@@ -82,9 +82,9 @@ public class SpringConfig implements WebMvcConfigurer {
     public DataSource dataSource() throws URISyntaxException {
         URI dbUri = new URI(System.getenv("CLEARDB_DATABASE_URL"));
 
-        String username = dbUri.getUserInfo().split(":")[0];
-        String password = dbUri.getUserInfo().split(":")[1];
-        String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
+        String username = "b4538e4edb71a5";
+        String password = "200b8ae1";
+        String dbUrl = "jdbc:mysql://" + "eu-cdbr-west-01.cleardb.com" + dbUri.getPath();
 
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setUrl(dbUrl);
@@ -108,7 +108,6 @@ public class SpringConfig implements WebMvcConfigurer {
         sessionFactory.setDataSource(dataSource());
         sessionFactory.setPackagesToScan("com.vladbadey.task4.models");
         sessionFactory.setHibernateProperties(hibernateProperties());
-
         return sessionFactory;
     }
 
