@@ -1,6 +1,6 @@
 package com.vladbadey.task4.config;
 
-import org.apache.tomcat.jdbc.pool.DataSource;
+import com.zaxxer.hikari.HikariDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +20,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
+import javax.sql.DataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Properties;
@@ -87,7 +88,7 @@ public class SpringConfig implements WebMvcConfigurer {
         String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
 
 
-        DataSource dataSource = new DataSource();
+        DriverManagerDataSource dataSource = new DriverManagerDataSource();
         //        dataSource.setInitialSize(5);
 //        dataSource.setJmxEnabled(true);
 //        dataSource.setMaxActive(50);
@@ -97,7 +98,7 @@ public class SpringConfig implements WebMvcConfigurer {
 //        dataSource.setMaxAge(10 * 60000);
 //        dataSource.setTimeBetweenEvictionRunsMillis(5000);
 //        dataSource.setMinEvictableIdleTimeMillis(60000);
-        dataSource.setValidationQuery("SELECT 1");
+        new HikariDataSource().setConnectionTestQuery("SELECT 1");
 //        dataSource.setValidationQueryTimeout(3);
 //        dataSource.setValidationInterval(15000);
 //        dataSource.setTestOnBorrow(true);
