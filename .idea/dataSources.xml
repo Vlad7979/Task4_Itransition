@@ -12,6 +12,9 @@
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://eu-cdbr-west-01.cleardb.com:3306/heroku_f787c2d7ddafcdd?reconnect=true</jdbc-url>
+      <driver-properties>
+        <property name="useSSL" value="true" />
+      </driver-properties>
     </data-source>
   </component>
 </project>
