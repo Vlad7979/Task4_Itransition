@@ -1,7 +1,6 @@
 package com.vladbadey.task4.config;
 
-import com.zaxxer.hikari.HikariDataSource;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+import org.apache.tomcat.jdbc.pool.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -9,6 +8,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -20,10 +20,8 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
-import javax.sql.DataSource;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.sql.Connection;
 import java.util.Properties;
 
 @Configuration
@@ -88,25 +86,25 @@ public class SpringConfig implements WebMvcConfigurer {
         String password = dbUri.getUserInfo().split(":")[1];
         String dbUrl = "jdbc:mysql://" + dbUri.getHost() + dbUri.getPath();
 
-        org.apache.tomcat.jdbc.pool.DataSource dataSource
-                = new org.apache.tomcat.jdbc.pool.DataSource();
-        dataSource.setInitialSize(5);
-        dataSource.setJmxEnabled(true);
-        dataSource.setMaxActive(50);
-        dataSource.setMinIdle(5);
-        dataSource.setMaxIdle(25);
-        dataSource.setMaxWait(10000);
-        dataSource.setMaxAge(10 * 60000);
-        dataSource.setTimeBetweenEvictionRunsMillis(5000);
-        dataSource.setMinEvictableIdleTimeMillis(60000);
+
+        DataSource dataSource = new DataSource();
+        //        dataSource.setInitialSize(5);
+//        dataSource.setJmxEnabled(true);
+//        dataSource.setMaxActive(50);
+//        dataSource.setMinIdle(5);
+//        dataSource.setMaxIdle(25);
+//        dataSource.setMaxWait(10000);
+//        dataSource.setMaxAge(10 * 60000);
+//        dataSource.setTimeBetweenEvictionRunsMillis(5000);
+//        dataSource.setMinEvictableIdleTimeMillis(60000);
         dataSource.setValidationQuery("SELECT 1");
-        dataSource.setValidationQueryTimeout(3);
-        dataSource.setValidationInterval(15000);
-        dataSource.setTestOnBorrow(true);
-        dataSource.setTestWhileIdle(true);
-        dataSource.setTestOnReturn(false);
-        dataSource.setJdbcInterceptors("ConnectorState");
-        dataSource.setDefaultTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+//        dataSource.setValidationQueryTimeout(3);
+//        dataSource.setValidationInterval(15000);
+//        dataSource.setTestOnBorrow(true);
+//        dataSource.setTestWhileIdle(true);
+//        dataSource.setTestOnReturn(false);
+//        dataSource.setJdbcInterceptors("ConnectorState");
+//        dataSource.setDefaultTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl(dbUrl);
         dataSource.setUsername(username);
