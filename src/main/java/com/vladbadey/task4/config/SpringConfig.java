@@ -1,5 +1,6 @@
 package com.vladbadey.task4.config;
 
+import com.zaxxer.hikari.HikariDataSource;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -90,6 +91,7 @@ public class SpringConfig implements WebMvcConfigurer {
 
         org.apache.tomcat.jdbc.pool.DataSource dataSource
                 = new org.apache.tomcat.jdbc.pool.DataSource();
+        new HikariDataSource().setConnectionTestQuery("SELECT 1");
         dataSource.setValidationQuery("SELECT 1");
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl(dbUrl);
