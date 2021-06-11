@@ -92,10 +92,6 @@ public class SpringConfig implements WebMvcConfigurer {
 
         org.apache.tomcat.jdbc.pool.DataSource dataSource = new
                 org.apache.tomcat.jdbc.pool.DataSource();
-        dataSource.setLoginTimeout(100);
-        dataSource.setSuspectTimeout(100);
-        dataSource.setValidationQueryTimeout(100);
-        dataSource.setRemoveAbandonedTimeout(100);
         dataSource.setValidationQuery("SELECT 1");
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl(dbUrl);

@@ -25,6 +25,7 @@ public class UsersDAO {
     @Transactional(readOnly = true)
     public List<User> showAll() {
         Session session = sessionFactory.getCurrentSession();
+        session.createQuery("select 1 from User");
         return session.createQuery("select p from User p", User.class)
                 .getResultList();
     }
@@ -32,6 +33,7 @@ public class UsersDAO {
     @Transactional
     public void save(User user) {
         Session session = sessionFactory.getCurrentSession();
+        session.createQuery("select 1 from User");
         user.setRegDate(LocalDate.now());
         user.setLastLogIn(LocalDate.now());
         session.save(user);
@@ -40,6 +42,7 @@ public class UsersDAO {
     @Transactional
     public boolean isUnique(User user) {
         Session session = sessionFactory.getCurrentSession();
+        session.createQuery("select 1 from User");
         Query query = session.createQuery("from User where email=:email");
         query.setParameter("email", user.getEmail());
         List<User> users = query.getResultList();
@@ -49,6 +52,7 @@ public class UsersDAO {
     @Transactional
     public User validateUser(Login login) {
         Session session = sessionFactory.getCurrentSession();
+        session.createQuery("select 1 from User");
         Query query = session.createQuery("from User where email=:email and password=:password");
         query.setParameter("email", login.getEmail());
         query.setParameter("password", login.getPassword());
@@ -60,6 +64,7 @@ public class UsersDAO {
     @Transactional
     public void blockUser(User user) {
         Session session = sessionFactory.getCurrentSession();
+        session.createQuery("select 1 from User");
         user = find(user.getId());
         user.setStatus(false);
         session.update(user);
@@ -69,6 +74,7 @@ public class UsersDAO {
     @Transactional
     public void unblockUser(User user) {
         Session session = sessionFactory.getCurrentSession();
+        session.createQuery("select 1 from User");
         user = find(user.getId());
         user.setStatus(true);
         session.update(user);
@@ -77,6 +83,7 @@ public class UsersDAO {
     @Transactional
     public void deleteUser(User user) {
         Session session = sessionFactory.getCurrentSession();
+        session.createQuery("select 1 from User");
         user = find(user.getId());
         session.delete(user);
     }
