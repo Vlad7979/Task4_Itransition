@@ -1,6 +1,8 @@
 package com.vladbadey.task4.config;
 
 import com.zaxxer.hikari.HikariDataSource;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
@@ -90,6 +92,10 @@ public class SpringConfig implements WebMvcConfigurer {
 
         org.apache.tomcat.jdbc.pool.DataSource dataSource = new
                 org.apache.tomcat.jdbc.pool.DataSource();
+        dataSource.setLoginTimeout(100);
+        dataSource.setSuspectTimeout(100);
+        dataSource.setValidationQueryTimeout(100);
+        dataSource.setRemoveAbandonedTimeout(100);
         dataSource.setValidationQuery("SELECT 1");
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
         dataSource.setUrl(dbUrl);
